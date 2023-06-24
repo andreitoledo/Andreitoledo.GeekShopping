@@ -1,4 +1,6 @@
+using Andreitoledo.GeekShopping.ProductAPI.Config;
 using Andreitoledo.GeekShopping.ProductAPI.Model.Context;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -17,6 +19,11 @@ namespace Andreitoledo.GeekShopping.ProductAPI
             builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(
                 connection,
                 new MySqlServerVersion(new Version(8, 0, 0))));
+
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            builder.Services.AddSingleton(mapper);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 
             builder.Services.AddAuthorization();
