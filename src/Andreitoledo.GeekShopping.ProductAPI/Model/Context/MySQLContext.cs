@@ -7,5 +7,8 @@ namespace Andreitoledo.GeekShopping.ProductAPI.Model.Context
         public MySQLContext() {}
         public MySQLContext(DbContextOptions<MySQLContext> options) 
             : base(options) { }
+
+        // Adiciona o dbset em products no nosso mapeamento - Andrei
+        public DbSet<Product> Products { get; set; }
     }
 }
