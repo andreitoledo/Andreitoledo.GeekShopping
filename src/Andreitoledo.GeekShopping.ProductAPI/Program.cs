@@ -28,16 +28,17 @@ namespace Andreitoledo.GeekShopping.ProductAPI
 
             // Injeta o productrepository - andrei
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
+                        
             builder.Services.AddAuthorization();
 
+            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-
             // Ajuste no titulo - andrei
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GeekShopping.ProductAPI", Version = "v1" });
+                               
             });
 
             var app = builder.Build();
@@ -51,26 +52,10 @@ namespace Andreitoledo.GeekShopping.ProductAPI
 
             app.UseAuthorization();
 
-            var summaries = new[]
-            {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateTime.Now.AddDays(index),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast");
+            app.MapControllers();
 
             app.Run();
+            
         }
     }
 }

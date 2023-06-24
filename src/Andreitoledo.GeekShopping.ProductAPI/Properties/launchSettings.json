@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Andreitoledo.GeekShopping.ProductAPI": {
+    "ProductAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
