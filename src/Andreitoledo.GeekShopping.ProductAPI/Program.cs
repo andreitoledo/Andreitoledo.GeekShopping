@@ -1,3 +1,7 @@
+using Andreitoledo.GeekShopping.ProductAPI.Model.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+
 namespace Andreitoledo.GeekShopping.ProductAPI
 {
     public class Program
@@ -7,11 +11,24 @@ namespace Andreitoledo.GeekShopping.ProductAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // Conexão com o banco MySQL - andrei
+            var connection = builder.Configuration["MySqlConnection:MySqlConnectionString"];
+            builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(
+                connection,
+                new MySqlServerVersion(new Version(8, 0, 0))));
+
+
             builder.Services.AddAuthorization();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            // Ajuste no titulo - andrei
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GeekShopping.ProductAPI", Version = "v1" });
+            });
 
             var app = builder.Build();
 
