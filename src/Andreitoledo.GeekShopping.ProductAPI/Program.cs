@@ -1,5 +1,6 @@
 using Andreitoledo.GeekShopping.ProductAPI.Config;
 using Andreitoledo.GeekShopping.ProductAPI.Model.Context;
+using Andreitoledo.GeekShopping.ProductAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -25,7 +26,8 @@ namespace Andreitoledo.GeekShopping.ProductAPI
             builder.Services.AddSingleton(mapper);
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
+            // Injeta o productrepository - andrei
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             builder.Services.AddAuthorization();
 
