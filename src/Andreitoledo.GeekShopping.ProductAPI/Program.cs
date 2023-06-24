@@ -20,6 +20,7 @@ namespace Andreitoledo.GeekShopping.ProductAPI
                 connection,
                 new MySqlServerVersion(new Version(8, 0, 0))));
 
+            // Adiciona a classe MappingConfig - andrei
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             builder.Services.AddSingleton(mapper);
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
