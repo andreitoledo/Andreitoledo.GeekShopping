@@ -1,3 +1,6 @@
+using Andreitoledo.GeekShopping.Web.Services;
+using Andreitoledo.GeekShopping.Web.Services.IServices;
+
 namespace Andreitoledo.GeekShopping.Web
 {
     public class Program
@@ -5,6 +8,11 @@ namespace Andreitoledo.GeekShopping.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // adicionando o serviço para consumir a API - andrei
+            builder.Services.AddHttpClient<IProductService, ProductService>(c =>
+            c.BaseAddress = new Uri(builder.Configuration["ServiveUrls:ProductAPI"])
+                );
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
