@@ -39,5 +39,26 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
             return View(model);
         }
 
+        // Tras os dados do banco para a tela
+        public async Task<IActionResult> ProductUpdate(int id)
+        {
+            var model = await _productService.FindProductById(id);
+            if (model != null) return View(model);
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProductUpdate(ProductModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _productService.UpdateProduct(model);
+                if (response != null) return RedirectToAction(
+                     nameof(ProductIndex));
+            }
+            return View(model);
+        }
+
+
     }
 }
