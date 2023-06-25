@@ -17,7 +17,7 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
         // Para esse método, busca na API o método FindAll em ProductController
         public async Task<IActionResult> ProductIndex()
         {
-            var products = _productService.FindAllProducts;
+            var products = await _productService.FindAllProducts();
             return View(products);
         }
     }
