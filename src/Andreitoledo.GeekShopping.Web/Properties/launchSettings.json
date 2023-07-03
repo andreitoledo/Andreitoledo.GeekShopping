@@ -4,11 +4,11 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:35634",
-      "sslPort": 4430
+      "sslPort": 0
     }
   },
   "profiles": {
-    "GeekShopping.IdentityServer": {
+    "GeekShopping.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
