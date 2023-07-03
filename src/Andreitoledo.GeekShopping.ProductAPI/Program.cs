@@ -3,6 +3,7 @@ using Andreitoledo.GeekShopping.ProductAPI.Model.Context;
 using Andreitoledo.GeekShopping.ProductAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Andreitoledo.GeekShopping.ProductAPI
@@ -32,6 +33,27 @@ namespace Andreitoledo.GeekShopping.ProductAPI
             builder.Services.AddAuthorization();
 
             builder.Services.AddControllers();
+
+            // Configurações de Autenticação e Autorização
+            builder.Services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:4435/";
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "geek_shopping");
+                });
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             // Ajuste no titulo - andrei
@@ -50,7 +72,8 @@ namespace Andreitoledo.GeekShopping.ProductAPI
                 app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
