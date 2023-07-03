@@ -49,6 +49,7 @@ namespace Andreitoledo.GeekShopping.IdentityServer
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -11,7 +11,7 @@ namespace Andreitoledo.GeekShopping.Web
 
             // adicionando o serviço para consumir a API - andrei
             builder.Services.AddHttpClient<IProductService, ProductService>(c =>
-            c.BaseAddress = new Uri(builder.Configuration["ServiveUrls:ProductAPI"])
+            c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"])
                 );
 
             // Add services to the container.
@@ -24,6 +24,7 @@ namespace Andreitoledo.GeekShopping.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

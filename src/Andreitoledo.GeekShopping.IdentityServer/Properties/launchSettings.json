@@ -4,15 +4,15 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:39390",
-      "sslPort": 0
+      "sslPort": 4435
     }
   },
   "profiles": {
-    "Andreitoledo.GeekShopping.IdentityServer": {
+    "GeekShopping.IdentityServer": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5294",
+      "applicationUrl": "https://localhost:4435;http://localhost:4436",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
