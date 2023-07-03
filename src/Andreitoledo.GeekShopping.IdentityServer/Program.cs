@@ -1,4 +1,5 @@
 using Andreitoledo.GeekShopping.IdentityServer.Configuration;
+using Andreitoledo.GeekShopping.IdentityServer.Initializer;
 using Andreitoledo.GeekShopping.IdentityServer.Model;
 using Andreitoledo.GeekShopping.IdentityServer.Model.Context;
 using Duende.IdentityServer.AspNetIdentity;
@@ -37,12 +38,16 @@ namespace Andreitoledo.GeekShopping.IdentityServer
                 .AddInMemoryClients(IdentityConfiguration.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
 
+            builder.Services.AddScoped<IDbInitializer, DbInitializer>();            
+
             builderServices.AddDeveloperSigningCredential();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            var initializer = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -55,6 +60,8 @@ namespace Andreitoledo.GeekShopping.IdentityServer
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
+
+            initializer.Initialize();
 
             app.MapControllerRoute(
                 name: "default",
