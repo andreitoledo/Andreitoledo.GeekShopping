@@ -2,10 +2,12 @@ using Andreitoledo.GeekShopping.IdentityServer.Configuration;
 using Andreitoledo.GeekShopping.IdentityServer.Initializer;
 using Andreitoledo.GeekShopping.IdentityServer.Model;
 using Andreitoledo.GeekShopping.IdentityServer.Model.Context;
+using Andreitoledo.GeekShopping.IdentityServer.Services;
 using Duende.IdentityServer.AspNetIdentity;
 using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace Andreitoledo.GeekShopping.IdentityServer
 {
@@ -38,7 +40,8 @@ namespace Andreitoledo.GeekShopping.IdentityServer
                 .AddInMemoryClients(IdentityConfiguration.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
 
-            builder.Services.AddScoped<IDbInitializer, DbInitializer>();            
+            builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
 
             builderServices.AddDeveloperSigningCredential();
 
