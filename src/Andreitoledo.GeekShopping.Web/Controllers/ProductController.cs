@@ -19,11 +19,10 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
         // Por ser microsserviços, a idéia não é referenciar todo o codigo da API
         // e somente os métodos que utilizaram.
         // Para esse método, busca na API o método FindAll em ProductController
-        [Authorize]
+        
         public async Task<IActionResult> ProductIndex()
-        {
-            var token = await HttpContext.GetTokenAsync("access_token");
-            var products = await _productService.FindAllProducts(token);
+        {            
+            var products = await _productService.FindAllProducts("");
             return View(products);
         }
         
