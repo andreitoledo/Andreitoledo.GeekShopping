@@ -1,12 +1,15 @@
-﻿using Andreitoledo.GeekShopping.CartAPI.Model.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Andreitoledo.GeekShopping.CartAPI.Model
 {
     [Table("product")]
-    public class Product : BaseEntity
+    public class Product
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("id")]
+        public long Id { get; set; }
+
         [Column("name")]
         [Required]
         [StringLength(150)]
