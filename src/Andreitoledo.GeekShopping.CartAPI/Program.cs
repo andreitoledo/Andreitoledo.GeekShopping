@@ -1,5 +1,6 @@
 using Andreitoledo.GeekShopping.CartAPI.Config;
 using Andreitoledo.GeekShopping.CartAPI.Model.Context;
+using Andreitoledo.GeekShopping.CartAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +29,7 @@ namespace Andreitoledo.GeekShopping.CartAPI
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Injeta o productrepository - andrei
-            //builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
 
             builder.Services.AddAuthorization();
 
