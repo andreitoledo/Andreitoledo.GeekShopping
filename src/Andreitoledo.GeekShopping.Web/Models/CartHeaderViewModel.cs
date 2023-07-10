@@ -1,7 +1,7 @@
 ﻿namespace Andreitoledo.GeekShopping.Web.Models
 {
 
-    public class CartHeaderVOViewModel
+    public class CartHeaderViewModel
     {
         public long Id { get; set; }
 
