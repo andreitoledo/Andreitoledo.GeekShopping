@@ -1,5 +1,6 @@
 using Andreitoledo.GeekShopping.CouponAPI.Config;
 using Andreitoledo.GeekShopping.CouponAPI.Model.Context;
+using Andreitoledo.GeekShopping.CouponAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -27,7 +28,7 @@ namespace Andreitoledo.GeekShopping.CouponAPI
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Injeta o productrepository - andrei
-            //builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+            builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
             builder.Services.AddAuthorization();
 
