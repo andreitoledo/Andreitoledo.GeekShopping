@@ -11,11 +11,11 @@
                 <div class="card-header bg-dark text-light ml-0 row">
                     <div class="col-6">
                         <i class="fa fa-shopping-cart"></i> &nbsp;
-                        Shopping Cart
+                        Carrinho de Compras
                     </div>
                     <div class="col-6 text-end">
                         <a asp-action="Index" asp-controller="Home" class="btn btn-outline-warning btn-sm">
-                            Continue Shopping
+                            Continue Comprando
                         </a>
                     </div>
                 </div>
@@ -25,13 +25,13 @@
                             <div class="col-lg-2">
                             </div>
                             <div class="col-lg-5">
-                                Product Details
+                                Detalhe do Produto
                             </div>
                             <div class="col-lg-2">
-                                Price
+                                Preço
                             </div>
                             <div class="col-lg-2">
-                                Count
+                                Quantidade
                             </div>
                             <div class="col-lg-1">
                             </div>
@@ -72,15 +72,15 @@
                     }                   
                     <div class="row">
                         <div class="col-6">
-                            <span>Coupon:</span>
+                            <span>Cupom:</span>
                             <input asp-for="CartHeader.CouponCode"/>
                             <button type="submit" asp-action="ApplyCoupon" class="btn-success">
-                                Apply
+                                Aplicar
                             </button>
                         </div>
                         <div class="col-6 text-end">
                             <span class="text-danger" style="font-size:21px;">
-                                Purchase Amount: @string.Format("{0:c}", Model.CartHeader.PurchaseAmount)
+                                Valor da compra: @string.Format("{0:c}", Model.CartHeader.PurchaseAmount)
                                 <br/>
                             </span>
                         </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-6 col-md-3">
                         <a asp-action="Checkout" class="btn btn-success form-control">
-                            <span>Checkout</span>
+                            <span>Confira</span>
                         </a>
                     </div>
                 </div>
@@ -102,6 +102,6 @@
 else
 {
     <div>
-        <p>Yor Cart is Empty!</p>
+        <p>Seu carrinho está vazio!</p>
     </div>
 }
