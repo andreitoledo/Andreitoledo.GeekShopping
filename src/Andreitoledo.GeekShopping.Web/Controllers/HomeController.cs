@@ -9,7 +9,6 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
 {
     public class HomeController : Controller
     {
-
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
