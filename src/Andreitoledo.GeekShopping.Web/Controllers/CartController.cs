@@ -10,12 +10,15 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
+        private readonly ICouponService _couponService;
 
         public CartController(IProductService productService,
-            ICartService cartService)
+            ICartService cartService,
+            ICouponService couponService)
         {
             _productService = productService;
             _cartService = cartService;
+            _couponService = couponService;            
         }
 
         [Authorize]
@@ -80,12 +83,22 @@ namespace Andreitoledo.GeekShopping.Web.Controllers
 
             if (response?.CartHeader != null)
             {
+                if (!string.IsNullOrEmpty(response.CartHeader.CouponCode))
+                {
+                    var coupon = await _couponService.
+                        GetCoupon(response.CartHeader.CouponCode, token);
+                    if (coupon?.CouponCode != null)
+                    {
+                        response.CartHeader.DiscountAmount = coupon.DiscountAmount;
+                    }
+                }
                 foreach (var detail in response.CartDetails)
                 {
                     response.CartHeader.PurchaseAmount += (detail.Product.Price * detail.Count);
                 }
+                response.CartHeader.PurchaseAmount -= response.CartHeader.DiscountAmount;
             }
-            return response;            
+            return response;
         }
     }
 }
