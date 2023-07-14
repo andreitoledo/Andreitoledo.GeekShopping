@@ -68,6 +68,9 @@ namespace Andreitoledo.GeekShopping.CartAPI.Controllers
         [HttpPost("checkout")]
         public async Task<ActionResult<CheckoutHeaderVO>> Checkout(CheckoutHeaderVO vo)
         {
+            // se o vo não esta nulo, mas se o UserId esta nulo
+            if (vo?.UserId == null) return BadRequest();
+            
             var cart = await _repository.FindCartByUserId(vo.UserId);
             if (cart == null) return NotFound();
             vo.CartDetails = cart.CartDetails;
