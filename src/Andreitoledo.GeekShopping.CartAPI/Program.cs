@@ -1,5 +1,6 @@
 using Andreitoledo.GeekShopping.CartAPI.Config;
 using Andreitoledo.GeekShopping.CartAPI.Model.Context;
+using Andreitoledo.GeekShopping.CartAPI.RabbitMQSender;
 using Andreitoledo.GeekShopping.CartAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ namespace Andreitoledo.GeekShopping.CartAPI
 
             // Injeta o productrepository - andrei
             builder.Services.AddScoped<ICartRepository, CartRepository>();
+                        
+            builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
             builder.Services.AddAuthorization();
 
