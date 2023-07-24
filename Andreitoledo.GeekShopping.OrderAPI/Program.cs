@@ -1,4 +1,5 @@
 using Andreitoledo.GeekShopping.OrderAPI.Model.Context;
+using Andreitoledo.GeekShopping.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -18,9 +19,14 @@ namespace Andreitoledo.GeekShopping.OrderAPI
             builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(
                 connection,
                 new MySqlServerVersion(new Version(8, 0, 0))));
-                                               
-                        
-            //builder.Services.AddScoped<ICartRepository, CartRepository>();
+
+            var dbContextBuilder = new DbContextOptionsBuilder<MySQLContext>();
+            dbContextBuilder.UseMySql(
+                connection,
+                new MySqlServerVersion(new Version(8, 0, 0)));
+
+            builder.Services.AddSingleton(new OrderRepository(dbContextBuilder.Options));
+
 
             //builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
