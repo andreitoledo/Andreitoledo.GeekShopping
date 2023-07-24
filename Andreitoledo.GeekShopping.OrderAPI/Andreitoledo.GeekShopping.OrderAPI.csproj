@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Andreitoledo.GeekShopping.MessageBus\Andreitoledo.GeekShopping.MessageBus.csproj" />
+    <ProjectReference Include="..\Andreitoledo.GeekShopping.MessageBus\Andreitoledo.GeekShopping.MessageBus.csproj" />
   </ItemGroup>
 
 </Project>
