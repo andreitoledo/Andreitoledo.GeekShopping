@@ -18,11 +18,7 @@ namespace Andreitoledo.GeekShopping.OrderAPI
             builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(
                 connection,
                 new MySqlServerVersion(new Version(8, 0, 0))));
-                                   
-
-            //IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-            //builder.Services.AddSingleton(mapper);
-            //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+                                               
                         
             //builder.Services.AddScoped<ICartRepository, CartRepository>();
 
