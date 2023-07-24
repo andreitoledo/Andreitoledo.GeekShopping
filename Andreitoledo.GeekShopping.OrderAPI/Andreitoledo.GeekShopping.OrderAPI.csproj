@@ -20,8 +20,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Andreitoledo.GeekShopping.MessageBus\Andreitoledo.GeekShopping.MessageBus.csproj" />
-  </ItemGroup>-->
+  </ItemGroup>
 
 </Project>
