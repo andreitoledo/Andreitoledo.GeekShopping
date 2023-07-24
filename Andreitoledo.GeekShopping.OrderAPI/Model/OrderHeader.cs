@@ -46,12 +46,9 @@ namespace Andreitoledo.GeekShopping.OrderAPI.Model
         public string ExpiryMonthYear { get; set; }
 
         [Column("total_itens")]
-        public int CartTotalItens { get; set; }
-
-        //public IEnumerable<OrderDetail> CartDetails { get; set; }
+        public int CartTotalItens { get; set; }        
 
         public List<OrderDetail> OrderDetails { get; set; }
-
 
         [Column("payment_status")]
         public bool PaymentStatus { get; set; }
