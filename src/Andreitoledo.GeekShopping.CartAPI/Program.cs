@@ -4,6 +4,7 @@ using Andreitoledo.GeekShopping.CartAPI.RabbitMQSender;
 using Andreitoledo.GeekShopping.CartAPI.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -31,12 +32,16 @@ namespace Andreitoledo.GeekShopping.CartAPI
 
             // Injeta o productrepository - andrei
             builder.Services.AddScoped<ICartRepository, CartRepository>();
-                        
+            builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+
             builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
             builder.Services.AddAuthorization();
 
             builder.Services.AddControllers();
+
+            builder.Services.AddHttpClient<ICouponRepository, CouponRepository>(s => s.BaseAddress =
+                new Uri(builder.Configuration["ServiceUrls:CouponAPI"]));
 
             // Configurações de Autenticação e Autorização
             builder.Services.AddAuthentication("Bearer")
