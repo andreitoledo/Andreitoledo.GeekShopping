@@ -84,7 +84,7 @@ namespace Andreitoledo.GeekShopping.CartAPI.Controllers
             // valida alterações no coupon
             if (!string.IsNullOrEmpty(vo.CouponCode))
             {
-                CouponVO coupon = await _couponRepository.GetCouponByCouponCode(
+                CouponVO coupon = await _couponRepository.GetCoupon(
                     vo.CouponCode, token);
                 if (vo.DiscountAmount != coupon.DiscountAmount)
                 {
