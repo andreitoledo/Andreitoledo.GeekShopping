@@ -2,7 +2,7 @@
 
 namespace Andreitoledo.GeekShopping.OrderAPI.Messages
 {
-    public class PaymantVO : BaseMessage
+    public class PaymentVO : BaseMessage
     {
         public long OrderId { get; set; }
         public string Name { get; set; }

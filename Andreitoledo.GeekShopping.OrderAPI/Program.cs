@@ -1,5 +1,6 @@
 using Andreitoledo.GeekShopping.OrderAPI.MessageConsumer;
 using Andreitoledo.GeekShopping.OrderAPI.Model.Context;
+using Andreitoledo.GeekShopping.OrderAPI.RabbitMQSender;
 using Andreitoledo.GeekShopping.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -30,6 +31,8 @@ namespace Andreitoledo.GeekShopping.OrderAPI
 
 
             builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
+
+            builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
             builder.Services.AddAuthorization();
 
